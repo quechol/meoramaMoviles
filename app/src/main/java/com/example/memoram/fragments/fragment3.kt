@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
+import com.example.memoram.Comunicacion
 import com.example.memoram.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -23,6 +25,7 @@ private const val ARG_PARAM2 = "param2"
 
 
 class fragment3 : Fragment() {
+    private lateinit var comunicacion: Comunicacion
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -30,25 +33,47 @@ class fragment3 : Fragment() {
     var puntuacion: Int = 0
     var aciertos: Int = 0
 
-    lateinit var img0: ImageButton
-    lateinit var img1: ImageButton
-    lateinit var img2: ImageButton
-    lateinit var img3: ImageButton
-    lateinit var img4: ImageButton
-    lateinit var img5: ImageButton
-    lateinit var img6: ImageButton
-    lateinit var img7: ImageButton
-    lateinit var img8: ImageButton
-    lateinit var img9: ImageButton
-    lateinit var img10: ImageButton
-    lateinit var img11: ImageButton
-    lateinit var img12: ImageButton
-    lateinit var img13: ImageButton
-    lateinit var img14: ImageButton
-    lateinit var img15: ImageButton
+    var img0: ImageButton? = null
+    var img1: ImageButton? = null
+    var img2: ImageButton? = null
+    var img3: ImageButton? = null
+    var img4: ImageButton? = null
+    var img5: ImageButton? = null
+    var img6: ImageButton? = null
+    var img7: ImageButton? = null
+    var img8: ImageButton? = null
+    var img9: ImageButton? = null
+    var img10: ImageButton? = null
+    var img11: ImageButton? = null
+    var img12: ImageButton? = null
+    var img13: ImageButton? = null
+    var img14: ImageButton? = null
+    var img15: ImageButton? = null
+
+    //val reiniciar: Button? = null
+    //var salir: Button? = null
 
     //ImageButton[] tablero = new ImageButton[16];
     val buttons = arrayOf(img0,img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12,img13,img14,img15)
+
+    //Imagenes
+    val imagenes: IntArray = intArrayOf(R.drawable.la0,
+                                        R.drawable.la1,
+                                        R.drawable.la2,
+                                        R.drawable.la3,
+                                        R.drawable.la4,
+                                        R.drawable.la5,
+                                        R.drawable.la6,
+                                        R.drawable.la7)
+    //ArrayList
+    //val fondo: R.drawable.fondo
+    val listDesordenada: List<String> = ArrayList()
+    //ImageButton: primero
+    var txtPuntuacion: TextView? = null
+    var mov1: Int = 0
+    var mov2: Int = 0
+    var bloqueo: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -64,8 +89,52 @@ class fragment3 : Fragment() {
         // Inflate the layout for this fragment
         val vista = inflater.inflate(R.layout.fragment_fragment3, container, false)
 
-        //img1 = vista.findViewById<ImageButton>(R.id.img0)
-        //print(buttons[2])
+        img0 = vista.findViewById(R.id.img0)
+        img1 = vista.findViewById(R.id.img1)
+        img2 = vista.findViewById(R.id.img2)
+        img3 = vista.findViewById(R.id.img3)
+        img4 = vista.findViewById(R.id.img4)
+        img5 = vista.findViewById(R.id.img5)
+        img6 = vista.findViewById(R.id.img6)
+        img7 = vista.findViewById(R.id.img7)
+        img8 = vista.findViewById(R.id.img8)
+        img9 = vista.findViewById(R.id.img9)
+        img10 = vista.findViewById(R.id.img10)
+        img11 = vista.findViewById(R.id.img11)
+        img12 = vista.findViewById(R.id.img12)
+        img13 = vista.findViewById(R.id.img13)
+        img14 = vista.findViewById(R.id.img14)
+        img15 = vista.findViewById(R.id.img15)
+
+        buttons[0] = img0
+        buttons[1] = img1
+        buttons[2] = img2
+        buttons[3] = img3
+        buttons[4] = img4
+        buttons[5] = img5
+        buttons[6] = img6
+        buttons[7] = img7
+        buttons[8] = img8
+        buttons[9] = img9
+        buttons[10] = img10
+        buttons[11] = img11
+        buttons[12] = img12
+        buttons[13] = img13
+        buttons[14] = img14
+        buttons[15] = img15
+
+        var reiniciar = vista.findViewById<Button>(R.id.btnReiniciar)
+        var salir = vista.findViewById<Button>(R.id.btnSalir)
+
+        txtPuntuacion = vista.findViewById(R.id.txtPuntuacion)
+        //txtPuntuacion.setText("Puntuacion: $puntuacion")
+
+        reiniciar.setOnClickListener{
+
+        }
+        salir.setOnClickListener{
+            //comunicacion.regresar()
+        }
 
         return vista
     }

@@ -32,4 +32,11 @@ class MainActivity : AppCompatActivity(), Comunicacion {
         transaction.replace(R.id.contenedor_frags, fragmento3).commit()
     }
 
+    override fun regresar() {
+        val fragmento1 = fragment1()
+        val bundle:Bundle = Bundle()
+        val transaction = this.supportFragmentManager.beginTransaction()
+        fragmento1.arguments = bundle
+        transaction.replace(R.id.contenedor_frags, fragmento1).commit()
+    }
 }
