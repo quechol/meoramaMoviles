@@ -131,7 +131,8 @@ class fragment2 : Fragment() {
 
         for (i in 0..15){
             buttons[i]!!.setScaleType(ImageView.ScaleType.CENTER_CROP)
-            buttons[i]?.setImageResource(imagenes[listDesordenada[i]])
+            //buttons[i]?.setImageResource(imagenes[listDesordenada[i]])
+            buttons[i]?.setImageResource(R.drawable.fondo)
         }
 
         reiniciar.setOnClickListener{

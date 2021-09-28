@@ -130,13 +130,14 @@ class fragment3 : Fragment() {
         var salir = vista.findViewById<Button>(R.id.btnSalir)
 
         txtPuntuacion = vista.findViewById(R.id.txtPuntuacion)
-        //txtPuntuacion.setText("Puntuacion: $puntuacion")
+        //txtPuntuacion.setText(puntuacion)
 
         listDesordenada = ordenar(imagenes.size)
 
         for (i in 0..15){
             buttons[i]!!.setScaleType(ImageView.ScaleType.CENTER_CROP)
             buttons[i]?.setImageResource(imagenes[listDesordenada[i]])
+            //buttons[i]?.setImageResource(R.drawable.fondo)
         }
 
         reiniciar.setOnClickListener{
@@ -175,6 +176,7 @@ class fragment3 : Fragment() {
             resultado.add(num % tam)
         }
         //Collections.shuffle(resultado)
+        resultado.shuffle()
         return resultado
     }
 }
