@@ -129,10 +129,10 @@ class fragment2 : Fragment() {
 
         listDesordenada = ordenar(imagenes.size)
 
-        /*for (i in 0..buttons.size){
-            buttons[i]?.setScaleType(ImageView.ScaleType.CENTER_CROP)
-            buttons[i]?.setImageResource(imagenes[listDesordenada.get(i)])
-        }*/
+        for (i in 0..15){
+            buttons[i]!!.setScaleType(ImageView.ScaleType.CENTER_CROP)
+            buttons[i]?.setImageResource(imagenes[listDesordenada[i]])
+        }
 
         reiniciar.setOnClickListener{
 
