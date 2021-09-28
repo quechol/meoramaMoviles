@@ -55,14 +55,14 @@ class fragment2 : Fragment() {
     val buttons: Array<ImageButton?> = arrayOf(img0,img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12,img13,img14,img15)
 
     //Imagenes
-    val imagenes: IntArray = intArrayOf(R.drawable.la0,
-        R.drawable.la1,
-        R.drawable.la2,
-        R.drawable.la3,
-        R.drawable.la4,
-        R.drawable.la5,
-        R.drawable.la6,
-        R.drawable.la7)
+    val imagenes: IntArray = intArrayOf(R.drawable.la00,
+                                        R.drawable.la10,
+                                        R.drawable.la20,
+                                        R.drawable.la30,
+                                        R.drawable.la40,
+                                        R.drawable.la50,
+                                        R.drawable.la60,
+                                        R.drawable.la70)
     //ArrayList
     //val fondo: R.drawable.fondo
     var listDesordenada: List<Int> = ArrayList()
