@@ -153,7 +153,7 @@
                 android:id="@+id/btnSalir"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="S A L I R"/>
+                android:text="M A Y O R(salir)"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

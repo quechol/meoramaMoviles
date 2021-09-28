@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import com.example.memoram.Comunicacion
 import com.example.memoram.R
+//import java.util.*
+import kotlin.collections.ArrayList
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -54,7 +57,7 @@ class fragment3 : Fragment() {
     //var salir: Button? = null
 
     //ImageButton[] tablero = new ImageButton[16];
-    val buttons = arrayOf(img0,img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12,img13,img14,img15)
+    val buttons: Array<ImageButton?> = arrayOf(img0,img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12,img13,img14,img15)
 
     //Imagenes
     val imagenes: IntArray = intArrayOf(R.drawable.la0,
@@ -67,7 +70,7 @@ class fragment3 : Fragment() {
                                         R.drawable.la7)
     //ArrayList
     //val fondo: R.drawable.fondo
-    val listDesordenada: List<String> = ArrayList()
+    var listDesordenada: List<Int> = ArrayList()
     //ImageButton: primero
     var txtPuntuacion: TextView? = null
     var mov1: Int = 0
@@ -129,6 +132,13 @@ class fragment3 : Fragment() {
         txtPuntuacion = vista.findViewById(R.id.txtPuntuacion)
         //txtPuntuacion.setText("Puntuacion: $puntuacion")
 
+        listDesordenada = ordenar(imagenes.size)
+
+        /*for (i in 0..buttons.size){
+            buttons[i]?.setScaleType(ImageView.ScaleType.CENTER_CROP)
+            buttons[i]?.setImageResource(imagenes[listDesordenada.get(i)])
+        }*/
+
         reiniciar.setOnClickListener{
 
         }
@@ -157,5 +167,14 @@ class fragment3 : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    private fun ordenar(tam: Int): ArrayList<Int> {
+        var resultado = ArrayList<Int>()
+        for (num in 0..((tam*2)-1)){
+            resultado.add(num % tam)
+        }
+        //Collections.shuffle(resultado)
+        return resultado
     }
 }
