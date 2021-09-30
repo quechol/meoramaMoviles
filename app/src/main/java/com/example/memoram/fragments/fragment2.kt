@@ -174,11 +174,13 @@ class fragment2 : Fragment() {
     private fun checkForPair(index1: Int, index2: Int) {
         if(cards[index1].id == cards[index2].id){
             //Toast.makeText(this, "Pareja encontrada!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity,"Pareja encontrada!",Toast.LENGTH_SHORT).show()
             cards[index1].found = true
             cards[index2].found = true
             aciertos += 1
             //Toast.makeText(this,"Aciertos: ", Toast.LENGTH_LONG).show()
             //Toast.makeText(applicationContext,"this is toast message",Toast.LENGTH_SHORT).show()
+            //Toast.makeText(activity,"Pareja encontrada!",Toast.LENGTH_SHORT).show()
             print("Aciertos: $aciertos")
         }else{
             errores += 1
