@@ -2,12 +2,14 @@ package com.example.memoram.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.Toast
 import android.widget.TextView
 import com.example.memoram.Comunicacion
 import com.example.memoram.Carta
@@ -17,16 +19,18 @@ import com.example.memoram.R
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-
 /**
  * A simple [Fragment] subclass.
  * Use the [fragment2.newInstance] factory method to
  * create an instance of this fragment.
  */
+private var errores:Int = 0
 class fragment2 : Fragment() {
     private lateinit var comunicacion: Comunicacion
-    var txtRcbEdad:Int? = 0
-    var txtRcbNombre:String? =""
+    private var txtRcbEdad:Int? = 0
+    private var txtRcbNombre:String? =""
+    //private var errores:Int = 0
+    private var aciertos:Int = 0
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -49,6 +53,7 @@ class fragment2 : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val vista = inflater.inflate(R.layout.fragment_fragment2, container, false)
+        this.comunicacion = activity as Comunicacion
 
         txtRcbEdad = arguments?.getInt("edad")
         txtRcbNombre = arguments?.getString("nombre")
@@ -93,6 +98,11 @@ class fragment2 : Fragment() {
 
             }
 
+        }
+
+        if(errores==5){
+            exitTransition
+            comunicacion.regresar()
         }
 
         reiniciar.setOnClickListener{
@@ -166,6 +176,13 @@ class fragment2 : Fragment() {
             //Toast.makeText(this, "Pareja encontrada!", Toast.LENGTH_SHORT).show()
             cards[index1].found = true
             cards[index2].found = true
+            aciertos += 1
+            //Toast.makeText(this,"Aciertos: ", Toast.LENGTH_LONG).show()
+            //Toast.makeText(applicationContext,"this is toast message",Toast.LENGTH_SHORT).show()
+            print("Aciertos: $aciertos")
+        }else{
+            errores += 1
+            print("Errores $errores")
         }
     }
 }
