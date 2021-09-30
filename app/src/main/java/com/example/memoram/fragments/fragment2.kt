@@ -10,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.memoram.Comunicacion
+import com.example.memoram.Carta
 import com.example.memoram.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -28,49 +29,9 @@ class fragment2 : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    var puntuacion: Int = 0
-    var aciertos: Int = 0
-
-    var img0: ImageButton? = null
-    var img1: ImageButton? = null
-    var img2: ImageButton? = null
-    var img3: ImageButton? = null
-    var img4: ImageButton? = null
-    var img5: ImageButton? = null
-    var img6: ImageButton? = null
-    var img7: ImageButton? = null
-    var img8: ImageButton? = null
-    var img9: ImageButton? = null
-    var img10: ImageButton? = null
-    var img11: ImageButton? = null
-    var img12: ImageButton? = null
-    var img13: ImageButton? = null
-    var img14: ImageButton? = null
-    var img15: ImageButton? = null
-
-    //val reiniciar: Button? = null
-    //var salir: Button? = null
-
-    //ImageButton[] tablero = new ImageButton[16];
-    val buttons: Array<ImageButton?> = arrayOf(img0,img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12,img13,img14,img15)
-
-    //Imagenes
-    val imagenes: IntArray = intArrayOf(R.drawable.la00,
-                                        R.drawable.la10,
-                                        R.drawable.la20,
-                                        R.drawable.la30,
-                                        R.drawable.la40,
-                                        R.drawable.la50,
-                                        R.drawable.la60,
-                                        R.drawable.la70)
-    //ArrayList
-    //val fondo: R.drawable.fondo
-    var listDesordenada: List<Int> = ArrayList()
-    //ImageButton: primero
-    var txtPuntuacion: TextView? = null
-    var mov1: Int = 0
-    var mov2: Int = 0
-    var bloqueo: Boolean = false
+    private lateinit var buttons: List<ImageButton>
+    private lateinit var cards: List<Carta>
+    private var indexOfSingleSelectedCard : Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,59 +48,41 @@ class fragment2 : Fragment() {
         // Inflate the layout for this fragment
         val vista = inflater.inflate(R.layout.fragment_fragment2, container, false)
 
-        img0 = vista.findViewById(R.id.img0)
-        img1 = vista.findViewById(R.id.img1)
-        img2 = vista.findViewById(R.id.img2)
-        img3 = vista.findViewById(R.id.img3)
-        img4 = vista.findViewById(R.id.img4)
-        img5 = vista.findViewById(R.id.img5)
-        img6 = vista.findViewById(R.id.img6)
-        img7 = vista.findViewById(R.id.img7)
-        img8 = vista.findViewById(R.id.img8)
-        img9 = vista.findViewById(R.id.img9)
-        img10 = vista.findViewById(R.id.img10)
-        img11 = vista.findViewById(R.id.img11)
-        img12 = vista.findViewById(R.id.img12)
-        img13 = vista.findViewById(R.id.img13)
-        img14 = vista.findViewById(R.id.img14)
-        img15 = vista.findViewById(R.id.img15)
+        var img0: ImageButton = vista.findViewById(R.id.img0)
+        var img1: ImageButton = vista.findViewById(R.id.img1)
+        var img2: ImageButton = vista.findViewById(R.id.img2)
+        var img3: ImageButton = vista.findViewById(R.id.img3)
+        var img4: ImageButton = vista.findViewById(R.id.img4)
+        var img5: ImageButton = vista.findViewById(R.id.img5)
+        var img6: ImageButton = vista.findViewById(R.id.img6)
+        var img7: ImageButton = vista.findViewById(R.id.img7)
+        var img8: ImageButton = vista.findViewById(R.id.img8)
+        var img9: ImageButton = vista.findViewById(R.id.img9)
+        var img10: ImageButton = vista.findViewById(R.id.img10)
+        var img11: ImageButton = vista.findViewById(R.id.img11)
+        var img12: ImageButton = vista.findViewById(R.id.img12)
+        var img13: ImageButton = vista.findViewById(R.id.img13)
+        var img14: ImageButton = vista.findViewById(R.id.img14)
+        var img15: ImageButton = vista.findViewById(R.id.img15)
 
-        buttons[0] = img0
-        buttons[1] = img1
-        buttons[2] = img2
-        buttons[3] = img3
-        buttons[4] = img4
-        buttons[5] = img5
-        buttons[6] = img6
-        buttons[7] = img7
-        buttons[8] = img8
-        buttons[9] = img9
-        buttons[10] = img10
-        buttons[11] = img11
-        buttons[12] = img12
-        buttons[13] = img13
-        buttons[14] = img14
-        buttons[15] = img15
+        val images = mutableListOf(R.drawable.la00, R.drawable.la10, R.drawable.la20,
+            R.drawable.la30, R.drawable.la40, R.drawable.la50, R.drawable.la60, R.drawable.la70)
+        images.addAll(images)
+        images.shuffle()
 
-        var reiniciar = vista.findViewById<Button>(R.id.btnReiniciar)
-        var salir = vista.findViewById<Button>(R.id.btnSalir)
+        buttons = listOf(img0, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img15)
 
-        txtPuntuacion = vista.findViewById(R.id.txtPuntuacion)
-        //txtPuntuacion.setText("Puntuacion: $puntuacion")
-
-        listDesordenada = ordenar(imagenes.size)
-
-        for (i in 0..15){
-            buttons[i]!!.setScaleType(ImageView.ScaleType.CENTER_CROP)
-            //buttons[i]?.setImageResource(imagenes[listDesordenada[i]])
-            buttons[i]?.setImageResource(R.drawable.fondo)
+        cards = buttons.indices.map { index ->
+            Carta(images[index], false, false)
         }
 
-        reiniciar.setOnClickListener{
+        buttons.forEachIndexed{index, button ->
+            button.setOnClickListener{
+                updateModels(index)
+                updateViews()
 
-        }
-        salir.setOnClickListener{
-            //comunicacion.regresar()
+            }
+
         }
 
         return vista
@@ -165,12 +108,46 @@ class fragment2 : Fragment() {
             }
     }
 
-    private fun ordenar(tam: Int): ArrayList<Int> {
-        var resultado = ArrayList<Int>()
-        for (num in 0..((tam*2)-1)){
-            resultado.add(num % tam)
+    private fun updateModels(index: Int) {
+        val card = cards[index]
+        if(card.up){
+            //Toast.makeText(this, "Movimiento no válido", Toast.LENGTH_SHORT).show()
+            return
         }
-        //Collections.shuffle(resultado)
-        return resultado
+        if(indexOfSingleSelectedCard == null){
+            restorePosition()
+            indexOfSingleSelectedCard = index
+        }else{
+            checkForPair(indexOfSingleSelectedCard!!, index)
+            indexOfSingleSelectedCard = null
+        }
+        card.up = !card.up
+    }
+
+    private fun restorePosition() {
+        for(card in cards){
+            if(!card.found){
+                card.up = false
+            }
+        }
+    }
+
+    private fun updateViews() {
+        cards.forEachIndexed { index, card ->
+            val button = buttons[index]
+            if (card.up) {
+                button.setImageResource(card.id)
+            } else {
+                button.setImageResource(R.drawable.fondo)
+            }
+        }
+    }
+
+    private fun checkForPair(index1: Int, index2: Int) {
+        if(cards[index1].id == cards[index2].id){
+            //Toast.makeText(this, "Pareja encontrada!", Toast.LENGTH_SHORT).show()
+            cards[index1].found = true
+            cards[index2].found = true
+        }
     }
 }
