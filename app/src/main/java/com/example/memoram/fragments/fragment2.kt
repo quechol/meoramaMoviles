@@ -25,6 +25,8 @@ private const val ARG_PARAM2 = "param2"
  */
 class fragment2 : Fragment() {
     private lateinit var comunicacion: Comunicacion
+    var txtRcbEdad:Int? = 0
+    var txtRcbNombre:String? =""
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -48,6 +50,14 @@ class fragment2 : Fragment() {
         // Inflate the layout for this fragment
         val vista = inflater.inflate(R.layout.fragment_fragment2, container, false)
 
+        txtRcbEdad = arguments?.getInt("edad")
+        txtRcbNombre = arguments?.getString("nombre")
+
+        vista.findViewById<TextView>(R.id.encabezado).text = "Nombre: " +txtRcbNombre + " Edad:" + txtRcbEdad
+
+        var reiniciar = vista.findViewById<Button>(R.id.btnReiniciar)
+        var salir = vista.findViewById<Button>(R.id.btnSalir)
+
         var img0: ImageButton = vista.findViewById(R.id.img0)
         var img1: ImageButton = vista.findViewById(R.id.img1)
         var img2: ImageButton = vista.findViewById(R.id.img2)
@@ -68,7 +78,7 @@ class fragment2 : Fragment() {
         val images = mutableListOf(R.drawable.la00, R.drawable.la10, R.drawable.la20,
             R.drawable.la30, R.drawable.la40, R.drawable.la50, R.drawable.la60, R.drawable.la70)
         images.addAll(images)
-        images.shuffle()
+        //images.shuffle()
 
         buttons = listOf(img0, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img15)
 
@@ -83,6 +93,14 @@ class fragment2 : Fragment() {
 
             }
 
+        }
+
+        reiniciar.setOnClickListener{
+            //comunicacion.regresar()
+        }
+
+        salir.setOnClickListener{
+            //comunicacion.regresar()
         }
 
         return vista

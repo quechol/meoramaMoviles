@@ -10,7 +10,23 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/Nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingresa tu nombre:"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:fontFamily="sans-serif-black"/>
+
+    <EditText
+        android:id="@+id/textoNombre"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"/>
+
+    <TextView
+        android:id="@+id/Edad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ingresa tu edad:"

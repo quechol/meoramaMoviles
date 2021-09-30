@@ -25,6 +25,8 @@ private const val ARG_PARAM2 = "param2"
  */
 class fragment3 : Fragment() {
     private lateinit var comunicacion: Comunicacion
+    var txtRcbEdad:Int? = 0
+    var txtRcbNombre:String? =""
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -47,6 +49,14 @@ class fragment3 : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val vista = inflater.inflate(R.layout.fragment_fragment3, container, false)
+
+        txtRcbEdad = arguments?.getInt("edad")
+        txtRcbNombre = arguments?.getString("nombre")
+
+        vista.findViewById<TextView>(R.id.encabezado).text = "Nombre: " +txtRcbNombre + " Edad:" + txtRcbEdad
+
+        var reiniciar = vista.findViewById<Button>(R.id.btnReiniciar)
+        var salir = vista.findViewById<Button>(R.id.btnSalir)
 
         var img0: ImageButton = vista.findViewById(R.id.img0)
         var img1: ImageButton = vista.findViewById(R.id.img1)
@@ -83,6 +93,14 @@ class fragment3 : Fragment() {
 
             }
 
+        }
+
+        reiniciar.setOnClickListener{
+            //comunicacion.regresar()
+        }
+
+        salir.setOnClickListener{
+            //comunicacion.regresar()
         }
 
         return vista

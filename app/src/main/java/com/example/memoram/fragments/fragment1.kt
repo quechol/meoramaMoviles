@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import com.example.memoram.Comunicacion
 import com.example.memoram.R
 
@@ -44,15 +45,15 @@ class fragment1 : Fragment() {
 
         val btnA: Button = vista.findViewById<Button>(R.id.btnAceptar)
         val edad: EditText = vista.findViewById(R.id.textoEdad)
-        //val edad = txtedad
+        val nombre: EditText = vista.findViewById(R.id.textoNombre)
+
         btnA.setOnClickListener {
-            //print("Boton Aceptar")
-            //comunicacion.enviarDatos(edad.text.toString().toInt())
             if(edad.text.toString().toInt() <= 17){
                 //Menor de edad
-                comunicacion.menorEdad(edad.text.toString().toInt())
+                comunicacion.menorEdad(edad.text.toString().toInt(), nombre.text.toString())
             }else{
-                comunicacion.mayorEdad(edad.text.toString().toInt())
+                //Mayor de edad
+                comunicacion.mayorEdad(edad.text.toString().toInt(), nombre.text.toString())
             }
         }
         return vista

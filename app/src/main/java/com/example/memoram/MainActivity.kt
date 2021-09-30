@@ -15,18 +15,22 @@ class MainActivity : AppCompatActivity(), Comunicacion {
         supportFragmentManager.beginTransaction().replace(R.id.contenedor_frags,fragmento1).commit()
     }
 
-    override fun menorEdad(edad: Int){
+    override fun menorEdad(edad: Int, nombre: String){
         //if (edad <= 18)
         val fragmento2 = fragment2()
         val bundle:Bundle = Bundle()
+        bundle.putInt("edad",edad)
+        bundle.putString("nombre", nombre)
         val transaction = this.supportFragmentManager.beginTransaction()
         fragmento2.arguments = bundle
         transaction.replace(R.id.contenedor_frags, fragmento2).commit()
     }
 
-    override fun mayorEdad(edad: Int) {
+    override fun mayorEdad(edad: Int, nombre: String) {
         val fragmento3 = fragment3()
         val bundle:Bundle = Bundle()
+        bundle.putInt("edad",edad)
+        bundle.putString("nombre", nombre)
         val transaction = this.supportFragmentManager.beginTransaction()
         fragmento3.arguments = bundle
         transaction.replace(R.id.contenedor_frags, fragmento3).commit()
