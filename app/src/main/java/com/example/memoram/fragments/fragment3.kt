@@ -53,7 +53,8 @@ class fragment3 : Fragment() {
         // Inflate the layout for this fragment
         val vista = inflater.inflate(R.layout.fragment_fragment3, container, false)
         this.comunicacion = activity as Comunicacion
-
+        errores = 0
+        aciertos = 0
         txtRcbEdad = arguments?.getInt("edad")
         txtRcbNombre = arguments?.getString("nombre")
 
@@ -173,10 +174,24 @@ class fragment3 : Fragment() {
             aciertos += 1
             print("Aciertos: $aciertos")
             Toast.makeText(activity,"Aciertos: $aciertos", Toast.LENGTH_SHORT).show()
+            aciertosVictoria()
         }else{
             errores += 1
             //print("Errores $errores")
             Toast.makeText(activity,"Errores: $errores", Toast.LENGTH_SHORT).show()
+            erroresDerrota()
+        }
+    }
+
+    private fun aciertosVictoria(){
+        if(aciertos==8){
+            comunicacion.victoria()
+        }
+    }
+
+    private fun erroresDerrota(){
+        if(errores == 5){
+            comunicacion.derrota()
         }
     }
 }
