@@ -101,7 +101,7 @@ class fragment3 : Fragment() {
         }
 
         reiniciar.setOnClickListener{
-            //comunicacion.regresar()
+            comunicacion.mayorEdad(txtRcbEdad.toString().toInt(), txtRcbNombre.toString())
         }
 
         salir.setOnClickListener{
@@ -168,7 +168,7 @@ class fragment3 : Fragment() {
 
     private fun checkForPair(index1: Int, index2: Int) {
         if(cards[index1].id == cards[index2].id){
-            Toast.makeText(activity,"Pareja encontrada!", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(activity,"Pareja encontrada!", Toast.LENGTH_SHORT).show()
             cards[index1].found = true
             cards[index2].found = true
             aciertos += 1
