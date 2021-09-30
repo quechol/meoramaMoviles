@@ -25,12 +25,11 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 private var errores:Int = 0
+private var aciertos:Int = 0
 class fragment2 : Fragment() {
     private lateinit var comunicacion: Comunicacion
     private var txtRcbEdad:Int? = 0
     private var txtRcbNombre:String? =""
-    //private var errores:Int = 0
-    private var aciertos:Int = 0
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -100,17 +99,12 @@ class fragment2 : Fragment() {
 
         }
 
-        if(errores==5){
-            exitTransition
-            comunicacion.regresar()
-        }
-
         reiniciar.setOnClickListener{
             //comunicacion.regresar()
         }
 
         salir.setOnClickListener{
-            //comunicacion.regresar()
+            comunicacion.regresar()
         }
 
         return vista
@@ -139,7 +133,7 @@ class fragment2 : Fragment() {
     private fun updateModels(index: Int) {
         val card = cards[index]
         if(card.up){
-            //Toast.makeText(this, "Movimiento no válido", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity,"Movimiento no valido",Toast.LENGTH_SHORT).show()
             return
         }
         if(indexOfSingleSelectedCard == null){
@@ -173,18 +167,16 @@ class fragment2 : Fragment() {
 
     private fun checkForPair(index1: Int, index2: Int) {
         if(cards[index1].id == cards[index2].id){
-            //Toast.makeText(this, "Pareja encontrada!", Toast.LENGTH_SHORT).show()
             Toast.makeText(activity,"Pareja encontrada!",Toast.LENGTH_SHORT).show()
             cards[index1].found = true
             cards[index2].found = true
             aciertos += 1
-            //Toast.makeText(this,"Aciertos: ", Toast.LENGTH_LONG).show()
-            //Toast.makeText(applicationContext,"this is toast message",Toast.LENGTH_SHORT).show()
-            //Toast.makeText(activity,"Pareja encontrada!",Toast.LENGTH_SHORT).show()
             print("Aciertos: $aciertos")
+            Toast.makeText(activity,"Aciertos: $aciertos",Toast.LENGTH_SHORT).show()
         }else{
             errores += 1
-            print("Errores $errores")
+            //print("Errores $errores")
+            Toast.makeText(activity,"Errores: $errores",Toast.LENGTH_SHORT).show()
         }
     }
 }

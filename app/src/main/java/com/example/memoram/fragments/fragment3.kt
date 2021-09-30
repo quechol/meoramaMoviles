@@ -2,12 +2,14 @@ package com.example.memoram.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.Toast
 import android.widget.TextView
 import com.example.memoram.Comunicacion
 import com.example.memoram.Carta
@@ -17,12 +19,13 @@ import com.example.memoram.R
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-
 /**
  * A simple [Fragment] subclass.
  * Use the [fragment3.newInstance] factory method to
  * create an instance of this fragment.
  */
+private var errores:Int = 0
+private var aciertos:Int = 0
 class fragment3 : Fragment() {
     private lateinit var comunicacion: Comunicacion
     var txtRcbEdad:Int? = 0
@@ -49,6 +52,7 @@ class fragment3 : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val vista = inflater.inflate(R.layout.fragment_fragment3, container, false)
+        this.comunicacion = activity as Comunicacion
 
         txtRcbEdad = arguments?.getInt("edad")
         txtRcbNombre = arguments?.getString("nombre")
@@ -100,7 +104,7 @@ class fragment3 : Fragment() {
         }
 
         salir.setOnClickListener{
-            //comunicacion.regresar()
+            comunicacion.regresar()
         }
 
         return vista
@@ -129,7 +133,7 @@ class fragment3 : Fragment() {
     private fun updateModels(index: Int) {
         val card = cards[index]
         if(card.up){
-            //Toast.makeText(this, "Movimiento no válido", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity,"Movimiento no válido", Toast.LENGTH_SHORT).show()
             return
         }
         if(indexOfSingleSelectedCard == null){
@@ -163,9 +167,16 @@ class fragment3 : Fragment() {
 
     private fun checkForPair(index1: Int, index2: Int) {
         if(cards[index1].id == cards[index2].id){
-            //Toast.makeText(this, "Pareja encontrada!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity,"Pareja encontrada!", Toast.LENGTH_SHORT).show()
             cards[index1].found = true
             cards[index2].found = true
+            aciertos += 1
+            print("Aciertos: $aciertos")
+            Toast.makeText(activity,"Aciertos: $aciertos", Toast.LENGTH_SHORT).show()
+        }else{
+            errores += 1
+            //print("Errores $errores")
+            Toast.makeText(activity,"Errores: $errores", Toast.LENGTH_SHORT).show()
         }
     }
 }
