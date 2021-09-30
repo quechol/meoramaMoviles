@@ -6,4 +6,6 @@ interface Comunicacion {
     fun menorEdad(edad: Int, nombre: String)
     fun mayorEdad(edad: Int, nombre: String)
     fun regresar()
+    fun victoria()
+    fun derrota()
 }

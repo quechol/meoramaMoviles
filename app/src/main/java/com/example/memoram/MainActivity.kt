@@ -2,9 +2,7 @@ package com.example.memoram
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.memoram.fragments.fragment1
-import com.example.memoram.fragments.fragment2
-import com.example.memoram.fragments.fragment3
+import com.example.memoram.fragments.*
 
 class MainActivity : AppCompatActivity(), Comunicacion {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,5 +40,21 @@ class MainActivity : AppCompatActivity(), Comunicacion {
         val transaction = this.supportFragmentManager.beginTransaction()
         fragmento1.arguments = bundle
         transaction.replace(R.id.contenedor_frags, fragmento1).commit()
+    }
+
+    override fun victoria(){
+        val fragmento4 = fragment4()
+        val bundle:Bundle = Bundle()
+        val transaction = this.supportFragmentManager.beginTransaction()
+        fragmento4.arguments = bundle
+        transaction.replace(R.id.contenedor_frags, fragmento4).commit()
+    }
+
+    override fun derrota() {
+        val fragmento5 = fragment5()
+        val bundle:Bundle = Bundle()
+        val transaction = this.supportFragmentManager.beginTransaction()
+        fragmento5.arguments = bundle
+        transaction.replace(R.id.contenedor_frags, fragmento5).commit()
     }
 }
